@@ -24,6 +24,7 @@ function Form(props) {
     var text=document.getElementById("my-box");
     text.select();
     navigator.clipboard.writeText(text.value);
+    document.getSelection().removeAllRanges();
     props.showAlert("success","Copied to clipboard!");
   }
 
@@ -40,15 +41,15 @@ function Form(props) {
         <div className="form-group my-4">
             <textarea className="form-control" rows="8" id="my-box" value={text} onChange={onChange} style={{backgroundColor : props.mode === "dark"?"#042743":"white", color : props.mode === "light"?"#042743":"white",border : props.mode === "light"?"1px solid #042743":"1px solid white"}}></textarea>
         </div>
-        <button className='btn btn-primary mx-2' onClick={upperCase}>Convert to Uppercase</button>
-        <button className='btn btn-primary mx-2' onClick={lowerCase}>Convert to Lowercase</button>
-        <button className='btn btn-primary mx-2' onClick={clearText}>Clear text</button>
-        <button className='btn btn-primary mx-2' onClick={copyText}>Copy text</button>
+        <button disabled={text.length===0} className='btn btn-primary mx-2 my-1' onClick={upperCase}>Convert to Uppercase</button>
+        <button disabled={text.length===0} className='btn btn-primary mx-2 my-1' onClick={lowerCase}>Convert to Lowercase</button>
+        <button disabled={text.length===0} className='btn btn-primary mx-2 my-1' onClick={clearText}>Clear text</button>
+        <button disabled={text.length===0} className='btn btn-primary mx-2 my-1' onClick={copyText}>Copy text</button>
       </div>
       <div className='container my-3' style={{color : props.mode === "light"?"#042743":"white"}}>
         <h2>Your text summary</h2>
-        <p>{text.split(" ").length - 1} words and {text.length} characters</p>
-        <p>{0.008 * (text.split(" ").length - 1)} minutes to read this text</p>
+        <p>{text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} characters</p>
+        <p>{0.008 * (text.split(" ").filter((element)=>{return element.length!==0}).length)} minutes to read this text</p>
         <h2>Preview</h2>
         <p>{text.length>0?text:"Enter some text to preview it."}</p>
       </div>

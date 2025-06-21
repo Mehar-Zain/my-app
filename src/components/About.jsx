@@ -1,34 +1,14 @@
 import React, { useState } from 'react'
 
 function About(props) {
-    const [myStyle, setMyStyle] = useState({
-        color:"black",
-        backgroundColor:"white"
-    })
-
-    const [btnText, setbtnText] = useState("Enable Dark Mode")
-
-    const toggleStyle=()=>{
-        if(myStyle.color === "black"){
-            setMyStyle({  
-            color:"white",
-            backgroundColor:"black"
-            })
-            setbtnText("Enable Light Mode")
-        }
-        else{
-            setMyStyle({  
-            color:"black",
-            backgroundColor:"white"
-            })
-            setbtnText("Enable Dark Mode")
-        }
+    let myStyle={
+      color:props.mode==="dark"?"white":"#042743",
+      backgroundColor:props.mode==="dark"?"#042743":"white"
     }
   return (
     <div style={{color : props.mode === "light"?"#042743":"white"}}>
         <div className='d-flex'>
             <h1 className='container my-4' style={{color : props.mode === "light"?"#042743 !important":"white"}}>About Us</h1>
-            <button onClick={toggleStyle} className='btn btn-dark my-3 w-25' >{btnText}</button>
         </div>
         <div className="accordion" id="accordionExample">
       <div className="accordion-item" style={myStyle}>
@@ -42,7 +22,7 @@ function About(props) {
             aria-expanded="false"
             aria-controls="collapseOne"
           >
-            Accordion Item #1
+            <strong>Analyze your text</strong>
           </button>
         </h2>
         <div
@@ -51,7 +31,7 @@ function About(props) {
           data-bs-parent="#accordionExample"
         >
           <div className="accordion-body">
-            <strong>This is the first item’s accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element...
+            This is the first item’s accordion body. It is hidden by default...
           </div>
         </div>
       </div>
@@ -67,7 +47,7 @@ function About(props) {
             aria-expanded="false"
             aria-controls="collapseTwo"
           >
-            Accordion Item #2
+            <strong>Free to use</strong>
           </button>
         </h2>
         <div
@@ -76,7 +56,7 @@ function About(props) {
           data-bs-parent="#accordionExample"
         >
           <div className="accordion-body">
-            <strong>This is the second item’s accordion body.</strong> It is hidden by default...
+            This is the second item’s accordion body. It is hidden by default...
           </div>
         </div>
       </div>
@@ -92,7 +72,7 @@ function About(props) {
             aria-expanded="false"
             aria-controls="collapseThree"
           >
-            Accordion Item #3
+            <strong>Browser compatible</strong>
           </button>
         </h2>
         <div
@@ -101,7 +81,7 @@ function About(props) {
           data-bs-parent="#accordionExample"
         >
           <div className="accordion-body">
-            <strong>This is the third item’s accordion body.</strong> It is hidden by default...
+            This is the third item’s accordion body. It is hidden by default...
           </div>
         </div>
       </div>

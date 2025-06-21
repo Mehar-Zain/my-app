@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-// import About from './components/About'
+import About from './components/About'
 import Form from './components/Form'
 import Navbar from './components/Navbar'
 import Alert from './components/Alert'
@@ -49,6 +49,7 @@ function App() {
       <Route exact path="/" element={<Form showAlert={showAlert} heading="Enter text to analyze below" mode={Mode} />} />
     </Routes> */}
     <Form showAlert={showAlert} heading="Enter text to analyze below" mode={Mode} />
+    <About mode={Mode} />
     </div>
     {/* </Router> */}
     </>
