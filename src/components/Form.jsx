@@ -21,10 +21,7 @@ function Form(props) {
   }
 
   const copyText=()=>{
-    var text=document.getElementById("my-box");
-    text.select();
-    navigator.clipboard.writeText(text.value);
-    document.getSelection().removeAllRanges();
+    navigator.clipboard.writeText(text);
     props.showAlert("success","Copied to clipboard!");
   }
 
@@ -48,7 +45,7 @@ function Form(props) {
       </div>
       <div className='container my-3' style={{color : props.mode === "light"?"#042743":"white"}}>
         <h2>Your text summary</h2>
-        <p>{text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} characters</p>
+        <p>{text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words and {text.length} characters</p>
         <p>{0.008 * (text.split(" ").filter((element)=>{return element.length!==0}).length)} minutes to read this text</p>
         <h2>Preview</h2>
         <p>{text.length>0?text:"Enter some text to preview it."}</p>
